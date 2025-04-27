@@ -1,0 +1,21 @@
+{
+  "name": "eventease",
+  "version": "1.0.0",
+  "description": "EventEase – \"Discover, Save, and Share Local Events\"",
+  "main": "index.js",
+  "scripts": {
+    "build":"npm install --prefix backend && npm install --prefix frontend && npm run build --prefix frontend",
+    "start":"npm run start --prefix backend"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rajpuc/EventEase-.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rajpuc/EventEase-/issues"
+  },
+  "homepage": "https://github.com/rajpuc/EventEase-#readme"
+}

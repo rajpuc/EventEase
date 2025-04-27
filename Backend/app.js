@@ -10,7 +10,7 @@ import router from "./routes/api.js"
 import { MAX_JSON_SIZE, URL_ENCODED, WEB_CACHE, REQUEST_LIMIT_NUMBER, REQUEST_LIMIT_TIME } from "./app/config/config.js"
 import { config } from 'dotenv';
 config();
-
+import path from "path";
 const app = express();
 
 // Global Application Middleware
@@ -25,6 +25,8 @@ app.use(express.urlencoded({ extended: URL_ENCODED }));
 app.use(hpp())
 app.use(helmet())
 app.use(cookieParser())
+
+
 
 
 // Rate Limiter
@@ -45,6 +47,13 @@ mongoose.connect(process.env.MONGO_URI, { autoIndex: true }).then(() => {
 // Set API Routes
 app.use("/api/v1", router)
 
+
+if(process.env.NODE_ENV === "production"){
+    app.use(express.static(path.join(__dirname,"../frontend/dist")));
+    app.get("*",(req,res)=>{
+      res.sendFile(path.join(__dirname,"../frontend","dist","index.html"));
+    });
+}
 
 // Run Your Express Back End Project
 app.listen(process.env.PORT, () => {
